@@ -23,7 +23,6 @@ use Illuminate\Support\Facades\Route;
 Route::middleware(['check-api-header', 'api'])->group(function () {
     Route::prefix('v1')->group(static function () {
         Route::post('/user/register', [UserController::class, 'register'])->name('user.register');
-        Route::post('/user/login', [UserController::class, 'login'])->name('user.login');
     });
 });
 
