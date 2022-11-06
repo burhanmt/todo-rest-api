@@ -16,9 +16,9 @@ use Illuminate\Support\Facades\Route;
 */
 
 /**
- * No authentication in these routes. But I use "api" middleware to take advantage of
+ * There is no authentication in these routes. But I use "api" middleware to take advantage of
  * Laravel throttle rate-limiting. Because api middleware has default throttle 60,1 value. It means
- * 60 requests allowed per 1 minute.
+ * 60 requests allowed per minute.
  */
 Route::middleware(['check-api-header', 'api'])->group(function () {
     Route::prefix('v1')->group(static function () {
@@ -32,7 +32,7 @@ Route::middleware(['check-api-header', 'api'])->group(function () {
  */
 Route::middleware(['check-api-header', 'auth:api'])->group(function () {
     Route::prefix('v1')->group(static function () {
-       Route::resource('task', TaskController::class);
+       Route::resource('task', TaskController::class)->except(['create', 'edit']);
     });
 });
 

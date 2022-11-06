@@ -3,8 +3,9 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
-class UserControllerRegisterRequest extends FormRequest
+class TaskControllerUpdateRequest extends FormRequest
 {
     /**
      * Determine if the user is authorized to make this request.
@@ -24,9 +25,8 @@ class UserControllerRegisterRequest extends FormRequest
     public function rules()
     {
         return [
-            'name' => 'required|string|max:50',
-            'email' => 'required|string|email|max:50|unique:users',
-            'password' => 'required|string|min:8|max:255',
+            'name' => 'required|max:255',
+            'is_done' => ['nullable', Rule::in(1, 0)],
         ];
     }
 }
